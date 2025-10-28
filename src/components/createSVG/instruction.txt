@@ -1,0 +1,111 @@
+Инструкция по использованию класса CreateSVG:
+
+Для использования это класса, нужно установить пакет
+npm install vite-plugin-svg-sprite --save-dev
+
+// vite.config.ts
+import { defineConfig } from 'vite';
+import createSvgSpritePlugin from 'vite-plugin-svg-sprite';
+
+export default defineConfig({
+  plugins: [
+    createSvgSpritePlugin({
+      // Режим для vanilla JS/TS: возвращает symbolId как строку
+      exportType: 'vanilla',
+      // Глоб для включения файлов (опционально, по умолчанию все SVG)
+      include: '**/icons/*.svg',  // Путь к вашим SVG-иконкам
+      // Другие опции (опционально):
+      // symbolId: 'icon-[name]',  // Шаблон ID символа (по умолчанию [dir]-[name])
+    }),
+  ],
+});
+
+//tsconfig.json
+{
+  "compilerOptions": {
+    "types": [
+      "vite-plugin-svg-sprite/typings/vanilla"
+    ]
+  }
+}
+
+//src/vite-env.d.ts
+declare module '*.svg' {
+  const content: string
+  export default content
+}
+
+
+
+Класс CreateSVG предназначен для создания SVG-иконок в TypeScript/JavaScript проектах. 
+Он позволяет динамически генерировать SVG-элементы с заданными параметрами (имя иконки, размер, CSS-классы) 
+и вставлять их в DOM.
+
+
+Предварительные требования:
+1. SVG-иконки импортированы в проек.
+    например:
+      import './assets/icons/home.svg';
+      import './assets/icons/user.svg';
+      import './assets/icons/search.svg';
+
+
+2. Подготовьте CSS-стили для управления внешним видом иконок (например, цвет, размеры, отступы).
+    например:
+      .icon {
+        display: inline-block;
+      }
+
+    .icon-color {
+      fill: blue; /* Пример цвета */
+    }
+
+
+Как использовать.
+1. Создание иконки: Используйте функцию createSVG для создания экземпляра иконки
+    const homeIcon = createSVG('home', 32, 'icon-color');
+    const userIcon = createSVG('user', 24, 'text-green-500');
+    const searchIcon = createSVG('search', 24, 'text-red-500');
+
+    где:
+      home: Имя иконки, соответствующее ID в SVG-спрайте (например, #icon-home).
+      32, 24: Размер иконки в пикселях.
+      icon-color, text-green-500, text-red-500: CSS-классы для стилизации.
+  
+2. Рендеринг иконки: Вызовите метод renderElement() для получения SVG-элемента
+    например:
+      const svgElement = homeIcon.renderElement();
+
+3. Добавление иконки в DOM: Вставьте полученный SVG-элемент в нужный контейнер:
+    const app = document.querySelector<HTMLDivElement>('#app');
+    app?.append(homeIcon.renderElement());
+    app?.append(userIcon.renderElement());
+    app?.append(searchIcon.renderElement());
+
+
+4. Пример полного кода
+    // Импортируем стили
+    import './styles.css';
+
+    // Импортируем SVG-иконки
+    import './assets/icons/home.svg';
+    import './assets/icons/user.svg';
+    import './assets/icons/search.svg';
+
+    // Импортируем компонент иконки
+    import { createSVG } from './components/createSVG/createSVG';
+
+    // Находим контейнер
+    const app = document.querySelector<HTMLDivElement>('#app');
+
+    // Создаем иконки
+    const homeIcon = createSVG('home', 32, 'icon-color');
+    const userIcon = createSVG('user', 24, 'text-green-500');
+    const searchIcon = createSVG('search', 24, 'text-red-500');
+
+    // Вставляем иконки в DOM
+    if (app) {
+      app.append(homeIcon.renderElement());
+      app.append(userIcon.renderElement());
+      app.append(searchIcon.renderElement());
+    }
