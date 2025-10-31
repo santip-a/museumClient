@@ -1,0 +1,8 @@
+.result {
+  font-size: 5rem;
+  font-size-adjust: 0.5;
+  font-weight: bold;
+  /* white-space: nowrap; */
+  text-align: left;
+  transition: font-size 0.2s ease;
+}

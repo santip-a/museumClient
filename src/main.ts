@@ -1,27 +1,32 @@
+import { createPlayer } from './components/player-mp3/player.class';
+import { adjustFontSizeToFit } from './components/screen/adjustFontSizeToFit';
 import './styles.css'
 
-// Импортируем SVG иконки
-import './assets/icons/home.svg'
-import './assets/icons/user.svg'
-import './assets/icons/search.svg'
 
-// Импортируем компонент иконки
-import { createSVG } from './components/createSVG/createSVG'
+
+
+// пример вставки текста в экранчик
+adjustFontSizeToFit('43337');
 
 
 
 
+//выполняется после загрузки HTML
+document.addEventListener('DOMContentLoaded', function () {
 
-const app = document.querySelector<HTMLDivElement>('#app')
 
-// Создаем иконки
-const homeIcon = createSVG('home', 32, 'icon-color ')
-const userIcon = createSVG('user', 24, 'text-green-500')
-const searchIcon = createSVG('search', 24, 'text-red-500')
+  // установка работы плеера
+  const player = createPlayer()
+  // функция динамической замены трека в плеере
+  player.loadNewTrack('song.mp3')
 
-// Вставляем иконки
-app?.append(homeIcon.renderElement())
-app?.append(userIcon.renderElement())
-app?.append(searchIcon.renderElement())
+
+
+  
+});
+
+
+
+
 
 

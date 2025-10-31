@@ -1,0 +1,15 @@
+body {
+  /* Dynamic viewport height — учитывает панели браузера */
+  min-height: 100dvh;
+  /* display: grid; */
+  /* grid-template-rows: 1fr; */
+  margin: 0;
+  padding: 25px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--background);
+  border: 8px solid #030303;
+  border-radius: 10px;
+
+
+}

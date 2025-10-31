@@ -1,0 +1,14 @@
+.screen {
+  width: 100%;
+  max-height: 100px;
+  background-color: var(--color-screen);
+  border: 2px inset #030303;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+}

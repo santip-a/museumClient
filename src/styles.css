@@ -1,8 +1,37 @@
-body {
-  background-color: rgb(133, 212, 231);
+@import url(./block/root/root.css);
+@import url(./block/resset/resset.css);
+@import url(./block/body/body.css);
+@import url(./block/screen/screen.css);
+@import url(./block/screen/screen.css);
+@import url(./block/btn/btn.css);
+@import url(./block/progress-player/progress-player.css);
+
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 колонки одинаковой ширины */
+  grid-template-rows: repeat(5, 45px);
+  /* 5 строк по 45px */
+  gap: 8px;
+  width: 100%;
+  /* растягиваем на всю ширину */
+  max-width: 100%;
+  /* на случай, если есть родитель с ограничением */
+  padding: 0 20px;
+  /* опционально: отступы по бокам */
+  box-sizing: border-box;
+  /* чтобы padding не ломал ширину */
+  color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 auto;
+  /* центрируем, если ширина меньше экрана */
 }
 
-.icon-color {
-  background-color: rgb(117, 243, 14);
-  color: blue;
+.play-btn {
+  grid-column: 1 / -1;
+  /* от первой до последней колонки */
+  /* или: grid-column: span 3; */
 }

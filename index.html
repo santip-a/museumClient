@@ -1,13 +1,100 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>clientVite</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>clientVite</title>
+</head>
+
+<body>
+  <section class="screen">
+    <div class="result"></div>
+  </section>
+
+  <section class="player">
+    <div id="audio-player" style="width: 100%; position: relative;">
+      <!-- Шкала прогресса с круглым бегунком -->
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+        <div class="thumb"></div> <!-- Круглый белый бегунок -->
+        <input type="range" class="seek-bar" min="0" max="100" value="0" step="0.1">
+      </div>
+
+      <!-- Отображение времени -->
+      <div class="time-display">
+        <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+      </div>
+
+      <!-- Скрытый аудио-элемент -->
+      <audio id="audio-element" preload="metadata">
+        <!-- <source class="--song" src="song.mp3" type="audio/mpeg"> -->
+        <source class="--song" src="" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Отдельная кнопка play/pause -->
+    <button id="play-pause-btn">Play</button>
+  </section>
+
+  <section class="btn__all-next">
+    <button class="btn btn__next__button">
+      <svg class="btn__svg" viewBox="0 -60 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m512 391.25-.234375-391.25-210.183594 164.320312-.097656-164.320312-210.0625 164.230469v-157.441407h-91.421875v375.605469h91.421875v-156.523437l210.296875 165.378906-.097656-165.441406zm0 0"
+          fill="#000000" style="fill: rgb(0, 0, 0);"></path>
+      </svg>
+    </button>
+    <button class="btn btn__boock">
+      <svg class="btn__svg" id="Layer_1" enable-background="new 0 0 50 50" viewBox="0 0 50 50"
+        xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path
+            d="m4.5 16.2h7.8v30.8c0 1.1.9 2 2 2h31.1c1.1 0 2-.9 2-2v-38.3c0-4.2-3.4-7.7-7.7-7.7h-31.2c-3.3 0-5.9 2.6-5.9 5.9v7.3c0 1.1.9 2 1.9 2zm35.2-13.2c3.1 0 5.7 2.6 5.7 5.7v38.3h-31.1v-40.1c0-1.5-.6-2.9-1.5-3.9zm-35.1 3.9c0-2.2 1.7-3.9 3.9-3.9 2.1 0 3.9 1.7 3.9 3.9v7.3h-7.8z"
+            fill="#000000" style="fill: rgb(255, 255, 255);"></path>
+          <path d="m19 13.8h11c.6 0 1-.4 1-1s-.4-1-1-1h-11c-.6 0-1 .4-1 1s.4 1 1 1z" fill="#000000"
+            style="fill: rgb(255, 255, 255);"></path>
+          <path d="m19 18.7h21.6c.6 0 1-.4 1-1s-.4-1-1-1h-21.6c-.6 0-1 .4-1 1 0 .5.4 1 1 1z" fill="#000000"
+            style="fill: rgb(255, 255, 255);"></path>
+          <path d="m19 23.6h21.6c.6 0 1-.4 1-1s-.4-1-1-1h-21.6c-.6 0-1 .4-1 1 0 .5.4 1 1 1z" fill="#000000"
+            style="fill: rgb(255, 255, 255);"></path>
+          <path d="m19 28.4h21.6c.6 0 1-.4 1-1s-.4-1-1-1h-21.6c-.6 0-1 .4-1 1s.4 1 1 1z" fill="#000000"
+            style="fill: rgb(255, 255, 255);"></path>
+          <path d="m19 33.3h21.6c.6 0 1-.4 1-1s-.4-1-1-1h-21.6c-.6 0-1 .4-1 1s.4 1 1 1z" fill="#000000"
+            style="fill: rgb(255, 255, 255);"></path>
+          <path d="m40.6 36.2h-10.1c-.6 0-1 .4-1 1s.4 1 1 1h10.1c.6 0 1-.4 1-1s-.5-1-1-1z" fill="#000000"
+            style="fill: rgb(255, 255, 255);"></path>
+        </g>
+      </svg>
+
+    </button>
+    <button class="btn btn__next__button">
+      <svg class="btn__svg btn__svg_rotate180" viewBox="0 -60 512 512" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m512 391.25-.234375-391.25-210.183594 164.320312-.097656-164.320312-210.0625 164.230469v-157.441407h-91.421875v375.605469h91.421875v-156.523437l210.296875 165.378906-.097656-165.441406zm0 0"
+          fill="#000000" style="fill: rgb(0, 0, 0);"></path>
+      </svg>
+    </button>
+  </section>
+
+  <section class="buttons">
+    <div class="btn btn-1">1</div>
+    <div class="btn btn-1">2</div>
+    <div class="btn btn-1">3</div>
+    <div class="btn btn-1">4</div>
+    <div class="btn btn-1">5</div>
+    <div class="btn btn-1">6</div>
+    <div class="btn btn-1">7</div>
+    <div class="btn btn-1">8</div>
+    <div class="btn btn-1">9</div>
+    <div class="btn btn-1">*</div>
+    <div class="btn btn-1">0</div>
+    <div class="btn btn-1">Х</div>
+    <div class="btn btn-1 play-btn">play</div>
+  </section>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
